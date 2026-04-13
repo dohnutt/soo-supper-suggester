@@ -1,0 +1,219 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html {
+    --bg: #f8f8f8;
+    --text: rgb(0 0 0 / 90%);
+    --shade-10: rgb(0 0 0 / 10%);
+    --shade-25: rgb(0 0 0 / 25%);
+    --shade-50: rgb(0 0 0 / 50%);
+    --shade: var(--shade-25);
+    --tint-25: rgb(255 255 255 / 25%);
+    --tint-50: rgb(255 255 255 / 50%);
+    --tint: var(--tint-50);
+
+    font-size: 1.25rem;
+}
+
+body {
+    font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #ddd;
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.is-open {      --bg: #b8e2ca; }
+.is-closed {    --bg: #ffabab; }
+.is-maybe {     --bg: #e1c688; }
+
+main {
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--bg);
+    border: 1em solid #fff;
+    border-color: var(--shade) #fff #fff var(--shade);
+}
+
+h1 {
+    font-size: 2rem;
+    margin-top: 0;
+    text-shadow: 0.025em 0.025em 0 #fff, -0.025em -0.025em 0 var(--shade);
+    color: #000;
+}
+
+h1 small {
+    display: block;
+    font-size: 1rem;
+    text-shadow: none;
+    color: var(--shade-50);
+}
+
+a {
+    color: #1641a7;
+    text-decoration: underline;
+    text-underline-position: under;
+    text-decoration-thickness: 0.05em;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+}
+
+a:visited {
+    color: #551a8b;
+}
+
+.container {
+    max-width: 36rem;
+    margin: 0 auto;
+}
+
+button, .button {
+    display: inline-block;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 1em 2em;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 0.3em solid #fff;
+    border-color: #fff #000 #000 #fff;
+    background-color: #222;
+    cursor: pointer;
+    width: 16rem;
+    max-width: 100%;
+    margin-bottom: 2rem;
+    transition: border-color 120ms ease-in, padding 120ms ease-in, transform 120ms ease-in;
+}
+
+.button:visited {
+    color: #fff;
+}
+
+button:active, button:focus,
+.button:active, .button:focus {
+    border-color: #000 #fff #fff #000;
+    color: #fff;
+    transform: translateY(0.1em);
+}
+
+.tag {
+    display: inline-block;
+    border: 2px solid var(--shade-10);
+    border-color: var(--tint-50) var(--shade-10) var(--shade-10) var(--tint-50);
+    padding: 0.65em 1em 0.75em;
+    margin: 0.25rem;
+    font-size: 0.8333333333rem;
+    transition: border-color 120ms ease-in, transform 120ms ease-in;
+}
+
+a.tag:active, a.tag:focus {
+    border-color: var(--shade-10) var(--tint-50) var(--tint-50) var(--shade-10);
+    transform: translateY(0.05em);
+}
+
+dl {
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+dt {
+    flex-basis: 30%;
+    flex-shrink: 1;
+    font-weight: bold;
+}
+
+dd {
+    flex-basis: 70%;
+    flex-grow: 1;
+    
+}
+
+dt, dd {
+    position: relative;
+    margin: 1rem 0;
+    padding: 1rem 0 0;
+    border-top: 2px solid var(--shade-10);
+}
+
+dt::before, dd::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--tint);
+}
+
+.location:not(:last-child) {
+    margin: 0 0 2rem;
+}
+
+summary {
+    cursor: pointer;
+}
+
+.hours {
+    list-style: none;
+    padding: 0.25em 0;
+}
+
+.hours li {
+    padding: 0.25em 0.8em;
+}
+
+.hours .is-today {
+    color: var(--text);
+    font-weight: bold;
+    background-color: var(--tint-25);
+    width: fit-content;
+}
+
+hr {
+    margin: 20px 0;
+}
+
+.hit-counter {
+    margin: 0 0 2rem;
+}
+
+.hit-counter img {
+    margin: 0.5em 0 0.333em;
+    filter: grayscale(1) contrast(2) opacity(0.9);
+}
+
+footer {
+    margin: 3rem 0;
+    font-size: 0.75rem;
+}
+
+@media (min-width: 500px) {
+    h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 800px) {
+    main {
+        padding: 3rem;
+        border-width: 1em;
+    }
+
+    h1 {
+        font-size: 4rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*) {
+        animation-duration: 0s;
+    }
+}

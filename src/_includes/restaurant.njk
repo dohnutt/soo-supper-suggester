@@ -1,0 +1,151 @@
+{% extends "_base.njk" %}
+
+{% block main %}
+<h1>
+    <small class="block">Have you tried...</small>
+    {{ title }}
+</h1>
+
+<p style="margin: -1.5rem 0 2rem;"><small><a href="https://google.com/search?q={{ title + ', ' + (address if address else "Sault Ste. Marie") | urlencode }}" target="_blank">View on Google</a></small></p>
+
+<a class="button" id="roll" href="/">Re-roll</a>
+
+<dl class="container">
+    <dt>Location{{ 's' if (locations and locations.length > 1) }}</dt>
+    <dd>
+        {% if locations and locations.length > 0 %}
+            {% for loc in locations %}
+                <div class="location">
+                    {% if loc.address %}
+                        <a href="https://maps.google.com/?q={{ title + ', ' + loc.address | urlencode }}" target="_blank">{{ loc.address }}</a>
+                    {% endif %}
+                    
+                    {% if loc.hours %}
+                        <details style="margin-top: 0.5rem">
+                            <summary class="status" data-hours='{{ loc.hours | dump }}'>
+                                Expand hours
+                            </summary>
+                            <ul class="hours">
+                                {% for day, time in loc.hours %}
+                                    <li class="{% if day == currentDay %}is-today{% endif %}"><strong>{{ day }}:</strong> {{ time }}</li>
+                                {% endfor %}
+                            </ul>
+                        </details>
+                    {% else %}
+                        <p style="margin-top: 0.5rem"><em>No hours listed</em></p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            {# Fallback if no locations array (legacy format) #}
+            {% if address %}
+                <a href="https://maps.google.com/?q={{ title + ', ' + address | urlencode }}" target="_blank">{{ address }}</a>
+            {% endif %}
+            
+            {% if hours %}
+                <details style="margin-top: 0.5rem">
+                    <summary class="status" data-hours='{{ hours | dump }}'>
+                        Expand hours
+                    </summary>
+                    <ul class="hours">
+                        {% for day, time in hours %}
+                            <li><strong>{{ day }}:</strong> {{ time }}</li>
+                        {% endfor %}
+                    </ul>
+                </details>
+            {% else %}
+                <p style="margin-top: 0.5rem"><em>No hours listed</em></p>
+            {% endif %}
+        {% endif %}
+    </dd>
+
+    <dt>Tags</dt>
+    <dd>
+        {% if tags and tags.length > 0 %}
+            {% for tag in tags %}
+                <a href="https://google.ca/search?q={{ tag + ' sault ste marie' | urlencode }}" target="_blank" class="tag">{{ tag }}</a>
+            {% endfor %}
+        {% endif %}
+    </dd>
+    
+
+    <dt>Description</dt>
+    <dd>
+        {{ description | safe if description }}
+    </dd>
+</dl>
+
+<p style="margin: 3rem 0 0;">
+    <small>Wrong info? <a href="https://github.com/dohnutt/soo-supper-suggester/edit/main/src/restaurants/{{ page.fileSlug }}.md" target="_blank">Edit on GitHub</a></small>
+</p>
+{% endblock %}
+
+{% block footer %}
+<footer>
+    <p class="hit-counter">
+        Saultites have rolled<br> <img src="https://profile-counter.deno.dev/soo-supper-suggester/count.svg" alt="Hit Counter"/> <br>times
+    </p>
+
+    <a href="https://madeinthesoo.ca/">Made in the Soo 🇨🇦</a>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function renderHours() {
+    const mainEl = document.getElementsByTagName('main')[0];
+    if (typeof isOpenNow !== 'function') return;
+
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const now = new Date();
+    const todayName = days[now.getDay()];
+
+    let anyOpen = false;
+    let anyMaybe = false;
+    
+    const locSummaries = document.querySelectorAll('.status');
+    
+    if (locSummaries.length > 0) {
+        locSummaries.forEach(summary => {
+            let locHours = null;
+            try { 
+                locHours = JSON.parse(summary.getAttribute('data-hours')); 
+            } catch(e) {}
+
+            const status = isOpenNow(locHours);
+            const todayHours = (locHours && locHours[todayName]) ? locHours[todayName] : "Unknown hours";
+
+            if (status === true) {
+                anyOpen = true;
+                summary.innerHTML = `<strong>Open now</strong>, ${todayHours}`;
+            } else if (status === false) {
+                summary.innerHTML = `<strong>Closed</strong>, ${todayHours}`;
+            } else {
+                anyMaybe = true;
+                summary.innerHTML = `<em>Maybe open?</em> (No hours listed)`;
+            }
+        });
+    } else {
+        anyMaybe = true;
+    }
+
+    if (anyOpen) {
+        mainEl.classList.add('is-open');
+    } else if (!anyOpen && !anyMaybe) {
+        mainEl.classList.add('is-closed');
+    } else {
+        mainEl.classList.add('is-maybe');
+    }
+    
+    // Highlight today in lists
+    const listItems = document.querySelectorAll('.hours li');
+    listItems.forEach(li => {
+        if (li.textContent.startsWith(todayName)) {
+            li.classList.add('is-today');
+        }
+    });
+}
+
+renderHours();
+</script>
+{% endblock %}

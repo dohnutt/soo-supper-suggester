@@ -1,0 +1,17 @@
+{
+    "name": "soo-supper-suggester",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "start": "eleventy --serve",
+        "build": "eleventy",
+        "fetch": "node scripts/fetch-places.js"
+    },
+    "author": "dohnutt",
+    "type": "commonjs",
+    "dependencies": {
+        "@11ty/eleventy": "^3.1.5",
+        "dotenv": "^17.4.0",
+        "gray-matter": "^4.0.3"
+    }
+}
