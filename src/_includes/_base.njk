@@ -12,20 +12,19 @@
 </head>
 <body>
     <main>
-        {% block main %}
+        {%- block main -%}
             {{ content | safe }}
-        {% endblock %}
+        {%- endblock -%}
     </main>
 
-    {% block footer %}
+    {% block footer -%}
     <footer>
         <a href="https://madeinthesoo.ca/">Made in the Soo 🇨🇦</a>
     </footer>
-    {% endblock %}
+    {%- endblock %}
 
     
     <script src="/script.js"></script>
-    {% block scripts %}
-    {% endblock %}
+    {%- block scripts %}{% endblock %}
 </body>
 </html>

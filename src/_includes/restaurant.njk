@@ -6,7 +6,7 @@
     {{ title }}
 </h1>
 
-<p style="margin: -1.5rem 0 2rem;"><small><a href="https://google.com/search?q={{ title + ', ' + (address if address else "Sault Ste. Marie") | urlencode }}" target="_blank">View on Google</a></small></p>
+<p style="margin: 0 0 2rem;"><small><a href="https://google.com/search?q={{ title + ', ' + (address if address else "Sault Ste. Marie") | urlencode }}" target="_blank">View on Google</a></small></p>
 
 <a class="button" id="roll" href="/">Re-roll</a>
 
