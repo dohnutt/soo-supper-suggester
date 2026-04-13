@@ -1,3 +1,6 @@
 module.exports = {
-    layout: "restaurant.njk"
+    layout: "restaurant.njk",
+    eleventyComputed: {
+        permalink: (data) => data.ignore ? false : data.permalink
+    }
 };
