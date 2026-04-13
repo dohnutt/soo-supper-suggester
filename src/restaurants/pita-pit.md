@@ -18,5 +18,15 @@ locations:
       Friday: '10:00 AM – 10:00 PM'
       Saturday: '11:00 AM – 10:00 PM'
       Sunday: '11:00 AM – 9:00 PM'
+  - address: '710 Second Line E, Sault Ste. Marie, ON P6B 4K3, Canada'
+    google_place_id: ChIJcWjg4o83Nk0RRY_A6bJlNCM
+    hours:
+      Monday: '10:00 AM – 10:00 PM'
+      Tuesday: '10:00 AM – 10:00 PM'
+      Wednesday: '10:00 AM – 10:00 PM'
+      Thursday: '10:00 AM – 10:00 PM'
+      Friday: '10:00 AM – 10:00 PM'
+      Saturday: '11:00 AM – 10:00 PM'
+      Sunday: '11:00 AM – 9:00 PM'
 ---
 

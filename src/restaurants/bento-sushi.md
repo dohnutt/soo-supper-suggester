@@ -4,7 +4,7 @@ tags:
   - meal takeaway
 description: ''
 freeze: false
-ignore: false
+ignore: true
 locations:
   - address: '150 Churchill Blvd, Sault Ste. Marie, ON P6A 3Z9, Canada'
     google_place_id: ChIJzSj7p7Y5Nk0R9BYJ5O6l7OY

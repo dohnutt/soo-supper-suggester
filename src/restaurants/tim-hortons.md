@@ -88,5 +88,35 @@ locations:
       Friday: '4:30 AM – 10:00 PM'
       Saturday: '4:30 AM – 10:00 PM'
       Sunday: '4:30 AM – 10:00 PM'
+  - address: '293 Bay St, Sault Ste. Marie, ON P6A 1X3, Canada'
+    google_place_id: ChIJn7TcbMo5Nk0R3iMufusrCWQ
+    hours:
+      Monday: '9:00 AM – 8:00 PM'
+      Tuesday: '9:00 AM – 8:00 PM'
+      Wednesday: '9:00 AM – 8:00 PM'
+      Thursday: '9:00 AM – 8:00 PM'
+      Friday: '9:00 AM – 8:00 PM'
+      Saturday: '9:30 AM – 5:30 PM'
+      Sunday: '12:00 – 5:00 PM'
+  - address: '442 Bruce St, Sault Ste. Marie, ON P6B 1R4, Canada'
+    google_place_id: ChIJywZG-i84Nk0R0LKoOQQ7cWI
+    hours:
+      Monday: '5:00 AM – 8:00 PM'
+      Tuesday: '5:00 AM – 8:00 PM'
+      Wednesday: '5:00 AM – 8:00 PM'
+      Thursday: '5:00 AM – 8:00 PM'
+      Friday: '5:00 AM – 8:00 PM'
+      Saturday: '5:00 AM – 8:00 PM'
+      Sunday: '5:00 AM – 8:00 PM'
+  - address: '628 Third Line E, Sault Ste. Marie, ON P6A 5K7, Canada'
+    google_place_id: ChIJDWyKGqQ3Nk0RmjEdVF2ixuU
+    hours:
+      Monday: '6:00 AM – 10:00 PM'
+      Tuesday: '6:00 AM – 10:00 PM'
+      Wednesday: '6:00 AM – 10:00 PM'
+      Thursday: '6:00 AM – 10:00 PM'
+      Friday: '6:00 AM – 10:00 PM'
+      Saturday: '6:00 AM – 10:00 PM'
+      Sunday: '6:00 AM – 10:00 PM'
 ---
 
