@@ -17,11 +17,15 @@
         {%- endblock -%}
     </main>
 
-    {% block footer -%}
+    
     <footer>
+        {% block footer %}{% endblock %}
+        
         <a href="https://madeinthesoo.ca/">Made in the Soo 🇨🇦</a>
+        <span class="sep" aria-hidden="true">•</span>
+        <a href="https://dohnutt.com">Built by 🍩</a>
     </footer>
-    {%- endblock %}
+    
 
     
     <script src="/script.js"></script>
