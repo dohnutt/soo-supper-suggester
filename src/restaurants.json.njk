@@ -4,7 +4,7 @@ permalink: /restaurants.json
 [{% for restaurant in collections.restaurants %}
     {
         "url": "{{ restaurant.url }}",
-        "name": "{{ restaurant.data.title }}",
+        "name": "{{ restaurant.data.name }}",
         "hours": {% if restaurant.data.hours %}{{ restaurant.data.hours | dump | safe }}{% else %}null{% endif %},
         "locations": {% if restaurant.data.locations %}{{ restaurant.data.locations | dump | safe }}{% else %}[]{% endif %}
     }{{ ',' if not loop.last else '' }}{% endfor %}

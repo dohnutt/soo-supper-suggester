@@ -1,13 +1,14 @@
+{% set title = name + " • Roll the dice again" %}
 {% extends "_base.njk" %}
 
 {% block main %}
 <div class="namespace">
     <h1>
         <small class="block">Have you tried...</small>
-        {{ title }}
+        {{ name }}
     </h1>
 
-    <a href="https://google.com/search?q={{ title + ', ' + (address if address else "Sault Ste. Marie") | urlencode }}" target="_blank">
+    <a href="https://google.com/search?q={{ name + ', ' + (address if address else "Sault Ste. Marie") | urlencode }}" target="_blank">
         View on Google<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16"><path d="M376 64L352 64L352 112L494.1 112L263.1 343L246.1 360L280 393.9L297 376.9L528 145.9L528 288L576 288L576 64L376 64zM88 160L64 160L64 576L480 576L480 384L432 384L432 528L112 528L112 208L256 208L256 160L88 160z"/></svg>
     </a>
 </div>
@@ -22,7 +23,7 @@
         {% for loc in locations %}
             <div class="location">
                 {% if loc.address %}
-                    <a href="https://maps.google.com/?q={{ title + ', ' + loc.address | urlencode }}" target="_blank">{{ loc.address }}</a>
+                    <a href="https://maps.google.com/?q={{ name + ', ' + loc.address | urlencode }}" target="_blank">{{ loc.address }}</a>
                 {% endif %}
                 
                 {% if loc.hours %}

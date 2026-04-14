@@ -7,6 +7,7 @@ module.exports = function(eleventyConfig) {
 
     eleventyConfig.addPassthroughCopy("src/script.js");
     eleventyConfig.addPassthroughCopy("src/style.css");
+    eleventyConfig.addPassthroughCopy("src/share-image.png");
 
     return {
         dir: {
