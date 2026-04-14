@@ -8,7 +8,9 @@
 
 <p style="margin: 0 0 2rem;"><small><a href="https://google.com/search?q={{ title + ', ' + (address if address else "Sault Ste. Marie") | urlencode }}" target="_blank">View on Google</a></small></p>
 
-<a class="button" id="roll" href="/">Re-roll</a>
+<button id="roll" type="button">Re-roll</button>
+
+<p id="status-message"></p>
 
 <dl class="container">
     <dt>Location{{ 's' if (locations and locations.length > 1) }}</dt>

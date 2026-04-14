@@ -128,35 +128,70 @@ function pickRandomRestaurant(restaurants) {
     return pool[roll];
 }
 
-async function init() {
+let cachedRestaurants = null;
+
+async function roll() {
     const btn = document.getElementById('roll');
+    const originalText = btn.textContent || 'Roll it';
     const msg = document.getElementById('status-message');
-    msg.textContent = "Fetching list of fine establishments...";
 
     try {
-        const res = await fetch('/restaurants.json');
-        const restaurants = await res.json();
+        if (!cachedRestaurants) {
+            const res = await fetch('/restaurants.json');
+            cachedRestaurants = await res.json();
+        }
 
-        if (restaurants.length === 0) {
-            msg.textContent = "No restaurants found! Check back later.";
+        if (!cachedRestaurants || cachedRestaurants.length === 0) {
+            if (msg) {
+                msg.textContent = "No restaurants found! Try again later.";
+                msg.style.color = "red";
+            }
+            btn.textContent = originalText;
             return;
         }
 
-        btn.onclick = () => {
-            const picked = pickRandomRestaurant(restaurants);
-            if (picked) {
-                window.location.href = picked.url;
+        let attempts = 0;
+        let picked = null;
+        
+        while (attempts < 10) {
+            picked = pickRandomRestaurant(cachedRestaurants);
+            if (picked.url !== window.location.pathname) {
+                break;
             }
-        };
+            attempts++;
+        }
 
-        const autoPicked = pickRandomRestaurant(restaurants);
-        if (autoPicked) {
-            window.location.href = autoPicked.url;
+        if (picked) {
+            window.location.href = picked.url;
+        } else {
+            if (btn) btn.textContent = originalText;
         }
     } catch (e) {
-        msg.textContent = "Error loading restaurants. Try again later.";
+        alert("Error loading restaurants. Try again later.");
         console.error(e);
+        if (btn) btn.textContent = originalText;
     }
 }
 
-init();
+document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('roll');
+    const msg = document.getElementById('status-message');
+
+    if (btn) {
+        btn.onclick = (e) => {
+            e.preventDefault();
+            roll();
+        };
+    }
+
+    if (!cachedRestaurants) {
+        fetch('/restaurants.json')
+            .then(res => res.json())
+            .then(data => { cachedRestaurants = data; })
+            .catch(err => console.error("Prefetch failed", err));
+    }
+
+    if (msg) {
+        msg.textContent = "";
+    }
+});
