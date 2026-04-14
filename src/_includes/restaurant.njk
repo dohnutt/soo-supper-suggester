@@ -13,50 +13,28 @@
 <dl class="container">
     <dt>Location{{ 's' if (locations and locations.length > 1) }}</dt>
     <dd>
-        {% if locations and locations.length > 0 %}
-            {% for loc in locations %}
-                <div class="location">
-                    {% if loc.address %}
-                        <a href="https://maps.google.com/?q={{ title + ', ' + loc.address | urlencode }}" target="_blank">{{ loc.address }}</a>
-                    {% endif %}
-                    
-                    {% if loc.hours %}
-                        <details style="margin-top: 0.5rem">
-                            <summary class="status" data-hours='{{ loc.hours | dump }}'>
-                                Expand hours
-                            </summary>
-                            <ul class="hours">
-                                {% for day, time in loc.hours %}
-                                    <li class="{% if day == currentDay %}is-today{% endif %}"><strong>{{ day }}:</strong> {{ time }}</li>
-                                {% endfor %}
-                            </ul>
-                        </details>
-                    {% else %}
-                        <p style="margin-top: 0.5rem"><em>No hours listed</em></p>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        {% else %}
-            {# Fallback if no locations array (legacy format) #}
-            {% if address %}
-                <a href="https://maps.google.com/?q={{ title + ', ' + address | urlencode }}" target="_blank">{{ address }}</a>
-            {% endif %}
-            
-            {% if hours %}
-                <details style="margin-top: 0.5rem">
-                    <summary class="status" data-hours='{{ hours | dump }}'>
-                        Expand hours
-                    </summary>
-                    <ul class="hours">
-                        {% for day, time in hours %}
-                            <li><strong>{{ day }}:</strong> {{ time }}</li>
-                        {% endfor %}
-                    </ul>
-                </details>
-            {% else %}
-                <p style="margin-top: 0.5rem"><em>No hours listed</em></p>
-            {% endif %}
-        {% endif %}
+        {% for loc in locations %}
+            <div class="location">
+                {% if loc.address %}
+                    <a href="https://maps.google.com/?q={{ title + ', ' + loc.address | urlencode }}" target="_blank">{{ loc.address }}</a>
+                {% endif %}
+                
+                {% if loc.hours %}
+                    <details style="margin-top: 0.5rem">
+                        <summary class="status" data-hours='{{ loc.hours | dump }}'>
+                            Expand hours
+                        </summary>
+                        <ul class="hours">
+                            {% for day, time in loc.hours %}
+                                <li class="{% if day == currentDay %}is-today{% endif %}"><strong>{{ day }}:</strong> {{ time }}</li>
+                            {% endfor %}
+                        </ul>
+                    </details>
+                {% else %}
+                    <p style="margin-top: 0.5rem"><em>No hours listed</em></p>
+                {% endif %}
+            </div>
+        {% endfor %}
     </dd>
 
     <dt>Tags</dt>
