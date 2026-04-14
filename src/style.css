@@ -126,7 +126,6 @@ button:active, button:focus,
     border-color: var(--tint-50) var(--shade-10) var(--shade-10) var(--tint-50);
     padding: 0.65em 1em 0.75em;
     margin: 0.25rem;
-    /*font-size: 0.8333333333rem;*/
     transition: border-color 120ms ease-in, transform 120ms ease-in;
 }
 
