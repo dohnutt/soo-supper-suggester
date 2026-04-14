@@ -4,7 +4,7 @@ tags:
   - bar
 description: ''
 freeze: false
-ignore: false
+ignore: true
 locations:
   - address: '147 Churchill Ave, Sault Ste. Marie, ON P6C 2P9, Canada'
     google_place_id: ChIJ4-8pGPY3Nk0RuCHyj-tmdCI
