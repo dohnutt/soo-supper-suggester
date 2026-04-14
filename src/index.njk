@@ -5,22 +5,14 @@ permalink: /index.html
 {% extends "_base.njk" %}
 
 {% block main %}
-<div id="home-content" style="display: none; margin-top: 50px;">
+<div class="container">
     <h1>Soo Supper Suggester</h1>
     
-    <div class="container">
-        <p style="font-size: 1.4rem">Sault Ste. Marie is full of great places to eat, but making a decision can be tough. Hit the button below to roll a suggestion.</p>
-        <p><small>Don't like the suggestion? <em>Roll it again.</em> Don't like that one? <em>Roll it again.</em> Still not a fan? <em>Roll it again.</em> One more time? <em>Okay, maybe you're the problem.</em></small></p>
-    </div>
-
-    <button id="roll" type="button">Roll it</button>
-    
-    <p id="status-message">If a restaurant hasn't loaded by the time you're done reading this, something's probably broken.</p>
+    <p style="font-size: 1.4rem">Sault Ste. Marie is full of great places to eat, but making a decision can be tough. Hit the button below to roll a suggestion.</p>
+    <p><small>Don't like the suggestion? <em>Roll it again.</em> Don't like that one? <em>Roll it again.</em> Still not a fan? <em>Roll it again.</em> One more time? <em>Okay, maybe you're the problem.</em></small></p>
 </div>
-{% endblock %}
 
-{% block scripts %}
-<script>
-document.getElementById('home-content').style.display = 'block';
-</script>
+<button id="roll" type="button">Roll it</button>
+
+<p id="status-message"></p>
 {% endblock %}
